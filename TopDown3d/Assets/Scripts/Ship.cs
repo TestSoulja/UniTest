@@ -8,6 +8,9 @@ public class Ship : MonoBehaviour
     public Joystick joystick;
     private float vertical;
     private float horizontal;
+    bool rotateObjectBoolr;
+    bool rotateObjectBooll;
+    public float rotationspeed = 100f;
 
 
     void Start()
@@ -19,29 +22,67 @@ public class Ship : MonoBehaviour
     {
         GetKeyInput();
         GetMobileInput();
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            StartCoroutine(RotateObjectl());
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            StartCoroutine(RotateObjectr());
+        }
+        //else
+        //{
+        //    StartCoroutine(RotateObjectdef());
+        //}
     }
 
 
     private void GetKeyInput()
     {
         float move = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(move, 0, 0) * speed * Time.deltaTime;
+        transform.position += new Vector3(move, 0, 0) * speed * Time.deltaTime * 2;
 
         float move1 = Input.GetAxis("Vertical");
-        transform.position += new Vector3(0, move1, 0) * speed * Time.deltaTime;
+        transform.position += new Vector3(0, move1, 0) * speed * Time.deltaTime * 2;
     }
 
-    private void OnTriggerEnter(Collider names)
+    IEnumerator RotateObjectr()
     {
-        transform.position += new Vector3(0, 0, 0);
+        float moveSpeed = 1000f;
+        Quaternion endingAngle = Quaternion.Euler(new Vector3(-90, -25, 0));
+        //while (Vector3.Distance(transform.rotation.eulerAngles, endingAngle.eulerAngles) > 0.05f)
+        //{
+        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, endingAngle, moveSpeed * Time.deltaTime);
+        //    yield return null;
+        //}
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, endingAngle, moveSpeed * Time.deltaTime);
+        yield return null;
+        transform.rotation = endingAngle;
     }
-
-    void OnCollisionEnter(Collision myCollision)
+    IEnumerator RotateObjectl()
     {
-        if (myCollision.gameObject.CompareTag("Border"))
+        float moveSpeed = 1000f;
+        Quaternion endingAngle = Quaternion.Euler(new Vector3(-90, 25, 0));
+        //while (Vector3.Distance(transform.rotation.eulerAngles, endingAngle.eulerAngles) > 0.05f)
+        //{
+        //    transform.rotation = Quaternion.RotateTowards(transform.rotation, endingAngle, moveSpeed * Time.deltaTime);
+        //    yield return null;
+        //}
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, endingAngle, moveSpeed * Time.deltaTime);
+        yield return null;
+        transform.rotation = endingAngle;
+    }
+    IEnumerator RotateObjectdef()
+    {
+        float moveSpeed = 1000f;
+        Quaternion endingAngle = Quaternion.Euler(new Vector3(-90, 0, 0));
+        while (Vector3.Distance(transform.rotation.eulerAngles, endingAngle.eulerAngles) > 0.05f)
         {
-            transform.position += new Vector3(100, 0, 0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, endingAngle, moveSpeed * Time.deltaTime);
+            yield return null;
         }
+        transform.rotation = endingAngle;
     }
 
     private void GetMobileInput()
@@ -93,8 +134,8 @@ public class Ship : MonoBehaviour
             {
                 transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime;
             }
-            
         }
     }
     
 }
+

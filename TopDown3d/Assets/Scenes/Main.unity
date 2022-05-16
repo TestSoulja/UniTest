@@ -649,7 +649,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &735758194
 BoxCollider:
@@ -659,7 +659,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735758191}
   m_Material: {fileID: 13400000, guid: f2fa7c711259f6047a6e489c42803a3e, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1089,6 +1089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   joystick: {fileID: 859168387}
+  rotationspeed: 1
 --- !u!64 &1359449746
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1097,7 +1098,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359449744}
   m_Material: {fileID: 13400000, guid: f2fa7c711259f6047a6e489c42803a3e, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -1123,7 +1124,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &1359449751
 MonoBehaviour:
@@ -1134,10 +1135,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359449744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 209c4cab678f30e419f5561b003a8474, type: 3}
+  m_Script: {fileID: 11500000, guid: d8e507d0296a54c4d89f5ed0eaae987a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num: 0
 --- !u!1 &1645995532
 GameObject:
   m_ObjectHideFlags: 0

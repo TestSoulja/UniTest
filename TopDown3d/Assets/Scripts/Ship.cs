@@ -19,7 +19,6 @@ public class Ship : MonoBehaviour
     {
         GetKeyInput();
         GetMobileInput();
-
     }
 
 
@@ -32,10 +31,24 @@ public class Ship : MonoBehaviour
         transform.position += new Vector3(0, move1, 0) * speed * Time.deltaTime;
     }
 
+    private void OnTriggerEnter(Collider names)
+    {
+        transform.position += new Vector3(0, 0, 0);
+    }
+
+    void OnCollisionEnter(Collision myCollision)
+    {
+        if (myCollision.gameObject.CompareTag("Border"))
+        {
+            transform.position += new Vector3(100, 0, 0);
+        }
+    }
+
     private void GetMobileInput()
     {
         vertical = joystick.Vertical;
         horizontal = joystick.Horizontal;
+
 
         if (vertical >= 0.1)
         {
@@ -83,4 +96,5 @@ public class Ship : MonoBehaviour
             
         }
     }
+    
 }

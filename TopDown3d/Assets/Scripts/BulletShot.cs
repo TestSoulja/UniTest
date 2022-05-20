@@ -4,48 +4,90 @@ using UnityEngine;
 
 public class BulletShot : MonoBehaviour
 {
-    public float Speed = 2f;
-    public float TimeToDisable = 2f;
+    public float speed = 5f;
+    public Joystick joystick;
+    private float vertical;
+    private float horizontal;
 
-    //Каждый раз, когда наша пуля активируется
-    void OnEnable()
+
+    void Start()
     {
-        //Мы будем запускать таймер для того чтоб выключить её
-        StartCoroutine(SetDisabled(TimeToDisable));
 
     }
 
-    IEnumerator SetDisabled(float TimeToDisable)
+    void FixedUpdate()
     {
-        //Данный скрип приостановит свое исполнение на TimeToDisable секунд, а потом продолжит работу
-        yield return new WaitForSeconds(TimeToDisable);
-        //Выключаем объект, он у нас останется в пуле объектов до следующего использования
-        gameObject.SetActive(false);
+        GetKeyInput();
+        GetMobileInput();
+
     }
 
-    void Update()
+    // Управление с пк
+
+    private void GetKeyInput()
     {
-        //Теперь пуля будет лететь вперед до того, пока объект не будет выключен
-        //Так как наша пуля уже повернута в нужную сторону, а в 2D пространстве
-        //Вперед это направо, то нашей пуле надо просто лететь направо 
-        //отностительно своего мирового пространства
-        transform.position += transform.up * Speed * Time.deltaTime;
+        float move = Input.GetAxis("Horizontal");
+        transform.position += new Vector3(move, 0, 0) * speed * Time.deltaTime * 2;
+
+        float move1 = Input.GetAxis("Vertical");
+        transform.position += new Vector3(0, move1, 0) * speed * Time.deltaTime * 2;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Управление с мобилки
+
+    private void GetMobileInput()
     {
-        //Тут должна быть ваша обработка попадания
-        //Вместо этого условия необходимо ваше, которое определит, что
-        //в Collision находится именно тот объект, который вам нужен
-        if (collision == null)
+        vertical = joystick.Vertical;
+        horizontal = joystick.Horizontal;
+
+        //Движение вверх
+        if (vertical >= 0.1)
         {
-            //Выключаем ожидание выключения чтоб в случае чего не создавать
-            //несколько копий ожиданий
-            StopCoroutine("SetDisabled");
-            //Выключаем объект
-            gameObject.SetActive(false);
-            //Дальше весь тот код, который нужнен для вашей игры
-
+            if (vertical >= 0.5)
+            {
+                transform.position += new Vector3(0, 2, 0) * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += new Vector3(0, 1, 0) * speed * Time.deltaTime;
+            }
+        }
+        //Движение вниз
+        if (vertical <= -0.1)
+        {
+            if (vertical <= -0.5)
+            {
+                transform.position += new Vector3(0, -2, 0) * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += new Vector3(0, -1, 0) * speed * Time.deltaTime;
+            }
+        }
+        //Движение влево
+        if (horizontal <= -0.1)
+        {
+            if (horizontal <= -0.5)
+            {
+                transform.position += new Vector3(-2, 0, 0) * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime;
+            }
+        }
+        //Движение вправо
+        if (horizontal >= 0.1)
+        {
+            if (horizontal >= 0.5)
+            {
+                transform.position += new Vector3(2, 0, 0) * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime;
+            }
         }
     }
+
 }

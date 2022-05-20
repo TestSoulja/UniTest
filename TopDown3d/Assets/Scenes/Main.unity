@@ -1589,6 +1589,11 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 859168387}
+    - target: {fileID: 4568542204618381766, guid: 61954f4a94623b642b25d1e38295a31a,
+        type: 3}
+      propertyPath: BlockyShip_Fihter_
+      value: 
+      objectReference: {fileID: 1359449749}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61954f4a94623b642b25d1e38295a31a, type: 3}
 --- !u!4 &1359449749 stripped
@@ -2207,6 +2212,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bullet
       objectReference: {fileID: 0}
+    - target: {fileID: 2388933708816185877, guid: 0762cecdf38b4411f9d9949662f184bd,
+        type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 859168387}
     - target: {fileID: 4753014514546061150, guid: 0762cecdf38b4411f9d9949662f184bd,
         type: 3}
       propertyPath: m_RootOrder

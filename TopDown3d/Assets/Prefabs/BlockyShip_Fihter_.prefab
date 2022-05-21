@@ -126,3 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   joystick: {fileID: 0}
+  BlockyShip_Fihter_: {fileID: 4016885670465544}

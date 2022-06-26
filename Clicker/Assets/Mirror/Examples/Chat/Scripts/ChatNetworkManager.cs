@@ -13,7 +13,7 @@ namespace Mirror.Examples.Chat
         // Called by UI element NetworkAddressInput.OnValueChanged
         public void SetHostname(string hostname)
         {
-            networkAddress = "46.138.153.246";
+            networkAddress = "95.165.162.211";
         }
 
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
